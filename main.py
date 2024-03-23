@@ -4,6 +4,8 @@ from typing import List, Annotated
 import models
 from databse import engine, SesionLocal
 from sqlalchemy.orm import Session
+import os
+import uvicorn
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
@@ -20,6 +22,14 @@ def get_db():
 		yield db
 	finally:
 		db.close()
+
+@app.get("/")
+async def read_root():
+    return {"message": "Nothing to do here, my friend!"}
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 4000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 
 db_dependency = Annotated[Session, Depends(get_db)]
