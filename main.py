@@ -73,4 +73,4 @@ async def delete_task(_id: int, db: db_dependency):
     db.delete(db_todos)
     db.commit()
 
-    
+    pip==24.0
