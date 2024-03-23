@@ -31,6 +31,10 @@ async def read_root():
 async def head_root():
     return {}
 
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 4000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
+	 
 db_dependency = Annotated[Session, Depends(get_db)]
 
 
