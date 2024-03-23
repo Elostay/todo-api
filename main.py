@@ -27,11 +27,6 @@ def get_db():
 async def head_root():
     return {}
 
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 4000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
-
-
 db_dependency = Annotated[Session, Depends(get_db)]
 
 
@@ -83,4 +78,4 @@ async def delete_task(_id: int, db: db_dependency):
     db.delete(db_todos)
     db.commit()
 
-    pip==24.0
+  
