@@ -23,6 +23,9 @@ def get_db():
 	finally:
 		db.close()
 
+@app.head("/")
+async def head_root():
+    return {}
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 4000))
