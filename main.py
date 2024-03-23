@@ -23,9 +23,6 @@ def get_db():
 	finally:
 		db.close()
 
-@app.get("/")
-async def read_root():
-    return {"message": "Nothing to do here, my friend!"}
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 4000))
