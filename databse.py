@@ -8,6 +8,6 @@ DB_URL = os.environ.get("DB_URL")
 
 engine = create_engine(DB_URL)
 
-SesionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()

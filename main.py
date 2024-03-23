@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List, Annotated
 import models
-from databse import engine, SesionLocal
+from databse import engine, SessionLocal
 from sqlalchemy.orm import Session
 import os
 import uvicorn
@@ -22,6 +22,10 @@ def get_db():
 		yield db
 	finally:
 		db.close()
+
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
 
 @app.head("/")
 async def head_root():
