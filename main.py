@@ -88,6 +88,7 @@ async def edit_task(task_id: int, task: TodoBase, db: Session = Depends(get_db))
     
     db_todos.task = task.task
     db_todos.rate = task.rate
+    db_todos.done = task.done
 
     db.commit()
     db.refresh(db_todos)
