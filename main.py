@@ -12,11 +12,18 @@ from sqlalchemy.ext.declarative import declarative_base
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+    "https://localhost:3000",
+    "https://todo-2-five.vercel.app/"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://todo-api-bbyj.onrender.com"],
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PATCH", "DELETE", "PUT"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
