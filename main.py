@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List, Annotated
 import models
-from databse import engine, SessionLocal
+from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 import os
 import uvicorn
@@ -17,7 +17,7 @@ class TodoBase(BaseModel):
 	
 
 def get_db():
-	db = SesionLocal()
+	db = SessionLocal()
 	try:
 		yield db
 	finally:
@@ -34,7 +34,7 @@ async def head_root():
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 4000))
     uvicorn.run(app, host="0.0.0.0", port=port)
-	 
+
 db_dependency = Annotated[Session, Depends(get_db)]
 
 
