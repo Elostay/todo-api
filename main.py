@@ -6,9 +6,19 @@ from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 import os
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.ext.declarative import declarative_base
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://todo-api-bbyj.onrender.com"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PATCH", "DELETE", "PUT"],
+    allow_headers=["*"],
+)
 
 class TodoBase(BaseModel):
     done: bool
